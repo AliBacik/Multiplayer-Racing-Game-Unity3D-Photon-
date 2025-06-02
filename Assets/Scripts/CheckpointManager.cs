@@ -6,10 +6,20 @@ public class CheckpointManager : MonoBehaviour
     public int checkPoint = -1;
     int checkPointCount;
     int nextCheckPoint;
-
+    public GameObject lastCP;
     void Start()
     {
-        checkPointCount = GameObject.FindGameObjectsWithTag("checkpoint").Length;
+        GameObject[] cps = GameObject.FindGameObjectsWithTag("checkpoint");
+        checkPointCount = cps.Length;
+
+        foreach(GameObject c in cps)
+        {
+            if (c.name == "0")
+            {
+                lastCP = c;
+                break;
+            }
+        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -20,8 +30,8 @@ public class CheckpointManager : MonoBehaviour
 
             if(thisCPNumber == nextCheckPoint)
             {
+                lastCP=other.gameObject;
                 checkPoint = thisCPNumber;
-
                 if (checkPoint == 0) lap++;
 
                 nextCheckPoint++;

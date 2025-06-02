@@ -31,6 +31,8 @@ public class Drive : MonoBehaviour
 
     public GameObject PlayerNamePrefab;
     public Renderer carMesh;
+
+    string[] aiNames = {"Lee" , "Ali", "Nick" , "Merlin","Seth" };
     private void Start()
     {
         for (int i = 0; i < 4; i++)
@@ -44,7 +46,16 @@ public class Drive : MonoBehaviour
 
         GameObject playerName = Instantiate(PlayerNamePrefab);
         playerName.GetComponent<NameUIController>().target=rb.gameObject.transform;
-        playerName.GetComponent<NameUIController>().playerName.text = "Player Name";
+
+        if (GetComponent<AIController>().enabled)
+        {
+            playerName.GetComponent<NameUIController>().playerName.text = aiNames[Random.Range(0,aiNames.Length)];
+        }
+        else
+        {
+            playerName.GetComponent<NameUIController>().playerName.text = "Human";
+        }
+   
         playerName.GetComponent<NameUIController>().carRend=carMesh;
     }
 

@@ -10,7 +10,7 @@ public class AIController : MonoBehaviour
     Vector3 target;
     Vector3 nextTarget;
     int currentWP = 0;
-    bool isJump = false;
+    //bool isJump = false;
     float totalDistanceToTarget;
 
     GameObject tracker;

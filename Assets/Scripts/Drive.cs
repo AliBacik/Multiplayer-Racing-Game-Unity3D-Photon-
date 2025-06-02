@@ -28,6 +28,9 @@ public class Drive : MonoBehaviour
     int currentGear = 1;
     float currentGearPerc;
     public float maxSpeed = 200f;
+
+    public GameObject PlayerNamePrefab;
+    public Renderer carMesh;
     private void Start()
     {
         for (int i = 0; i < 4; i++)
@@ -38,6 +41,11 @@ public class Drive : MonoBehaviour
 
         BrakeLight[0].SetActive(false);
         BrakeLight[1].SetActive(false);
+
+        GameObject playerName = Instantiate(PlayerNamePrefab);
+        playerName.GetComponent<NameUIController>().target=rb.gameObject.transform;
+        playerName.GetComponent<NameUIController>().playerName.text = "Player Name";
+        playerName.GetComponent<NameUIController>().carRend=carMesh;
     }
 
     public void CalculateEngineSound()

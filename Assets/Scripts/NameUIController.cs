@@ -9,10 +9,13 @@ public class NameUIController : MonoBehaviour
     CanvasGroup canvasGroup;
     public Renderer carRend;
     CheckpointManager cpManager;
+
+    int carRego;
     void Start()
     {
         transform.SetParent(GameObject.Find("Canvas").GetComponent<Transform>(),false);
         canvasGroup=GetComponent<CanvasGroup>();
+        carRego=Leaderboard.RegisterCar(playerName.text);
     }
 
     void LateUpdate()
@@ -29,6 +32,9 @@ public class NameUIController : MonoBehaviour
            cpManager=target.GetComponent<CheckpointManager>();
         }
 
-        lapDisplay.text = "Lap:" + cpManager.lap + " (CP: " + cpManager.checkPoint + ")";
+        Leaderboard.SetPosition(carRego,cpManager.lap,cpManager.checkPoint,cpManager.timeEntered);
+        string position=Leaderboard.GetPosition(carRego);
+
+        lapDisplay.text = position + " " + cpManager.lap + " (" + cpManager.checkPoint + ")";
     }
 }

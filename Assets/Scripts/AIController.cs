@@ -1,3 +1,4 @@
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class AIController : MonoBehaviour
@@ -10,7 +11,6 @@ public class AIController : MonoBehaviour
     Vector3 target;
     Vector3 nextTarget;
     int currentWP = 0;
-    //bool isJump = false;
     float totalDistanceToTarget;
 
     GameObject tracker;
@@ -21,8 +21,8 @@ public class AIController : MonoBehaviour
     public Ghost _Ghost;
 
     CheckpointManager cpm;
+    float finishSteer;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
 
@@ -43,6 +43,7 @@ public class AIController : MonoBehaviour
         tracker.transform.rotation = ds.rb.gameObject.transform.rotation;
 
         _Ghost.enabled = false;
+        finishSteer = Random.Range(-1.0f, 1.0f);
     }
 
     void ProgressTracker()
@@ -71,7 +72,17 @@ public class AIController : MonoBehaviour
     void Update()
     {
         if (!RaceMonitor.racing) { lastTimeMoving = Time.time; return; }
-        
+        if (cpm == null)
+        {
+            cpm = ds.rb.GetComponent<CheckpointManager>();
+        }
+        if (cpm.lap == RaceMonitor.totalLaps + 1)
+        {
+            ds.highAccel.Stop();
+            ds.Go(0, finishSteer, 0);
+            return;
+        }
+
         ProgressTracker();
         Vector3 localTarget;
         float targetAngle;
@@ -81,13 +92,8 @@ public class AIController : MonoBehaviour
             lastTimeMoving = Time.time;
         }
 
-        if(Time.time > lastTimeMoving+4)
+        if(Time.time > lastTimeMoving+4 || ds.rb.gameObject.transform.position.y <-5)
         {
-            if (cpm == null)
-            {
-                cpm=ds.rb.GetComponent<CheckpointManager>();
-            }
-
             ds.rb.gameObject.transform.position=cpm.lastCP.transform.position+Vector3.up*2;
             ds.rb.gameObject.transform.rotation=cpm.lastCP.transform.rotation;
 
@@ -127,9 +133,19 @@ public class AIController : MonoBehaviour
             accel = Mathf.Lerp(0, 1 * accelSensitivity, 1 - cornerFactor);
         }
 
+        float prevTorque=ds.Torque;
+        if (speedFactor < 0.3f && ds.rb.gameObject.transform.forward.y > 0.1f)
+        {
+            ds.Torque *= 2f;
+            accel = 1f;
+            brake = 0;
+        }
+
         ds.Go(accel, steer, brake);
 
         ds.CheckForSkid();
         ds.CalculateEngineSound();
+
+        ds.Torque = prevTorque;
     }
 }

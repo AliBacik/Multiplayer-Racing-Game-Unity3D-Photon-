@@ -3293,6 +3293,7 @@ MonoBehaviour:
   maxSpeed: 250
   PlayerNamePrefab: {fileID: 7614088954536468087, guid: 361ad1e5091aabb47ba15e9ec95d90ea, type: 3}
   carMesh: {fileID: 793341428334787577}
+  networkName: 
 --- !u!114 &1579692586455396810
 MonoBehaviour:
   m_ObjectHideFlags: 0

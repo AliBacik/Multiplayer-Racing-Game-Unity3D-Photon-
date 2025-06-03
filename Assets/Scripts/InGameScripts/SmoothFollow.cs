@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -13,6 +14,7 @@ public class SmoothFollow : MonoBehaviour
     public float heightDamping = 4.0f;
     public float rotationDamping = 2.0f;
     public RawImage rearCamView;
+   
     int index = 0;
 
     int FP = -1;
@@ -40,7 +42,7 @@ public class SmoothFollow : MonoBehaviour
         }
     }
 
-    void LateUpdate()
+    void FixedUpdate()
     {
         if (target == null)
         {
@@ -58,34 +60,47 @@ public class SmoothFollow : MonoBehaviour
             target[index].Find("RearCamera").gameObject.GetComponent<Camera>().targetTexture = (rearCamView.texture as RenderTexture);
             return;
         }
-            
-           
+
+        Transform car = target[index];
+
         if (FP ==1)
         {
             transform.position = target[index].position - target[index].forward * 0.4f + target[index].up;
             transform.LookAt(target[index].position+ target[index].forward*3);
+            
         }
         else
         {
-            float wantedRotationAngle = target[index].eulerAngles.y;
-            float wantedHeight = target[index].position.y + height;
 
-            float currentRotationAngle = transform.eulerAngles.y;
-            float currentHeight = transform.position.y;
+            //float wantedRotationAngle = target[index].eulerAngles.y;
+            //float wantedHeight = target[index].position.y + height;
 
-            currentRotationAngle = Mathf.LerpAngle(currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
-            currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);
+            //float currentRotationAngle = transform.eulerAngles.y;
+            //float currentHeight = transform.position.y;
 
-            Quaternion currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
+            //currentRotationAngle = Mathf.LerpAngle(currentRotationAngle, wantedRotationAngle, rotationDamping * Time.deltaTime);
+            //currentHeight = Mathf.Lerp(currentHeight, wantedHeight, heightDamping * Time.deltaTime);
 
-            transform.position = target[index].position;
-            transform.position -= currentRotation * Vector3.forward * distance;
+            //Quaternion currentRotation = Quaternion.Euler(0, currentRotationAngle, 0);
 
-            transform.position = new Vector3(transform.position.x,
-                                    currentHeight + heightOffset,
-                                    transform.position.z);
+            //transform.position = target[index].position;
+            //transform.position -= currentRotation * Vector3.forward * distance;
 
-            transform.LookAt(target[index]);
+            //transform.position = new Vector3(transform.position.x,
+            //                        currentHeight + heightOffset,
+            //                        transform.position.z);
+
+            //transform.LookAt(target[index]);
+
+            Quaternion targetRotation = Quaternion.Euler(0, car.eulerAngles.y, 0);
+            Vector3 offset = targetRotation * new Vector3(0, height, -distance);
+            Vector3 desiredPosition = car.position + offset + Vector3.up * heightOffset;
+
+            // Pozisyon biraz yumuşak olabilir
+            transform.position = Vector3.Lerp(transform.position, desiredPosition, Time.deltaTime * 8f);
+
+            // Anında dönüş —> oyuncu önünü hemen görür
+            transform.rotation = Quaternion.LookRotation(car.position + car.forward * 5f - transform.position);
         }
              
     }

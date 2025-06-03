@@ -33,7 +33,7 @@ public class Drive : MonoBehaviour
     public Renderer carMesh;
 
     public string networkName = "";
-    string[] aiNames = {"Ozan" , "Ali", "Eren" ,"Erkan","Kayra","Pudge", "Ogre" };
+    string[] aiNames = { "Ozan" , "Ali", "Eren" , "Erkan", "Kayra", "Pudge", "Ogre" };
     private void Start()
     {
         for (int i = 0; i < 4; i++)

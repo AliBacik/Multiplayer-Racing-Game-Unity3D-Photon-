@@ -168,7 +168,7 @@ public class RaceMonitor : MonoBehaviourPunCallbacks
             }
         }
 
-        if(finishedCount == carsCPM.Length || raceOver)
+        if(finishedCount == carsCPM.Length)
         {
             HUD.SetActive(false);
             gameObject.SetActive(true);

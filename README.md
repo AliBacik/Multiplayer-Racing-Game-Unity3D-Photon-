@@ -30,7 +30,8 @@ Unity (C#)
 Photon PUN 2 (Multiplayer)
 
 📸 Screenshots
-(Add your in-game screenshots or gameplay GIFs here)
+![alt text](https://github.com/AliBacik/Multiplayer-Racing-Game-Unity3D-Photon-/blob/main/ScreenShots/1.png)
+![alt text](https://github.com/AliBacik/Multiplayer-Racing-Game-Unity3D-Photon-/blob/main/ScreenShots/2.png)
 
-🔗 Live Demo / Download
-(If available, add build links or demo video links here)
+🔗 Video
+

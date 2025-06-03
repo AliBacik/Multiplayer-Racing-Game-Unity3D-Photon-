@@ -12,7 +12,7 @@ Photon Kart Racing 3D is a real-time multiplayer kart racing game built with Uni
 🧠 Advanced AI Drivers
 AI-controlled racers can navigate tracks efficiently, avoid obstacles and other drivers, and adapt to dynamic racing conditions.
 
-🌍 Online Multiplayer
+🌍 Multiplayer
 Real-time multiplayer support using Photon PUN 2. Players can join races, compete with others, and see each other’s movements smoothly synced over the network.
 
 🗺️ Mini-map System
@@ -34,4 +34,6 @@ Photon PUN 2 (Multiplayer)
 ![alt text](https://github.com/AliBacik/Multiplayer-Racing-Game-Unity3D-Photon-/blob/main/ScreenShots/2.png)
 
 🔗 Video
+
+[![Watch the video](https://img.youtube.com/vi/abc123XYZ/hqdefault.jpg)]([https://www.youtube.com/watch?v=abc123XYZ](https://www.youtube.com/watch?v=4sgkHb-VY10&ab_channel=AliBACIK))
 

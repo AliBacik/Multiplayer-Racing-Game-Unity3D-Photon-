@@ -53,7 +53,7 @@ public class Drive : MonoBehaviour
         }
         else
         {
-            playerName.GetComponent<NameUIController>().playerName.text = "Human";
+            playerName.GetComponent<NameUIController>().playerName.text = PlayerPrefs.GetString("PlayerName");
         }
    
         playerName.GetComponent<NameUIController>().carRend=carMesh;

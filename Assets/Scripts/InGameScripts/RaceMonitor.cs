@@ -15,7 +15,8 @@ public class RaceMonitor : MonoBehaviour
     public static int totalLaps = 1;
     public GameObject GameOverPanel;
     public GameObject HUD;
-    
+
+    int playerCar;
     void Start()
     {
         foreach(GameObject g in countDownItems)
@@ -24,8 +25,21 @@ public class RaceMonitor : MonoBehaviour
         }
         StartCoroutine(PlayCountDown());
 
-        foreach(Transform t in spawnPos)
+        playerCar = PlayerPrefs.GetInt("PlayerCar");
+        GameObject pcar = Instantiate(carPrefabs[playerCar]);
+
+        int randomStartPos = Random.Range(0,spawnPos.Length);
+        pcar.transform.position = spawnPos[randomStartPos].position;
+        pcar.transform.rotation = spawnPos[randomStartPos].rotation;
+
+        SmoothFollow.playerCar=pcar.gameObject.GetComponent<Drive>().rb.transform;
+        pcar.GetComponent<AIController>().enabled = false;
+        pcar.GetComponent<PlayerController>().enabled = true;
+
+        foreach (Transform t in spawnPos)
         {
+            if (t == spawnPos[randomStartPos]) continue;
+
             GameObject car = Instantiate(carPrefabs[Random.Range(0,carPrefabs.Length)]);    
             car.transform.position = t.position;
             car.transform.rotation = t.rotation;

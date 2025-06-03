@@ -1024,10 +1024,10 @@ MonoBehaviour:
   - {fileID: 287429469}
   - {fileID: 2077116864}
   carPrefabs:
-  - {fileID: 549848230262674368, guid: 48548745b4213c2488a1de38c2aa344d, type: 3}
-  - {fileID: 6875293690214835090, guid: 31e87ccdabfefb543b633c6ef2dfdc71, type: 3}
   - {fileID: 1812210893148786099, guid: e0f573ac5e71ebe4abf2806079eb5b15, type: 3}
+  - {fileID: 6875293690214835090, guid: 31e87ccdabfefb543b633c6ef2dfdc71, type: 3}
   - {fileID: 3807905504575632625, guid: c21851af67bd681499da3e8d4110f3c2, type: 3}
+  - {fileID: 549848230262674368, guid: 48548745b4213c2488a1de38c2aa344d, type: 3}
   spawnPos:
   - {fileID: 1504689051}
   - {fileID: 1739117073}
@@ -3132,7 +3132,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 368481046}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -8964,7 +8964,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1107603139}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -11447,7 +11447,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504689047}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -13176,7 +13176,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1739117069}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1

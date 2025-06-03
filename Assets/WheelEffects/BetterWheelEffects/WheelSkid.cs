@@ -36,7 +36,7 @@ public class WheelSkid : MonoBehaviour {
     {
 		if (skidmarksController == null)
 		{ 
-			skidmarksController=GameObject.FindGameObjectWithTag("skidmark").GetComponent<Skidmarks>();
+			skidmarksController=GameObject.FindGameObjectWithTag("skidmarks").GetComponent<Skidmarks>();
 		}
     }
 

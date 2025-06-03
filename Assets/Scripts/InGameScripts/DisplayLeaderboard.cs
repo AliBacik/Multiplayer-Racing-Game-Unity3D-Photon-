@@ -36,10 +36,6 @@ public class DisplayLeaderboard : MonoBehaviour
         {
             Fourth.text = places[3];
         }
-        foreach (string s in places) 
-        {
-            Debug.Log("places: " + s);
         
-        }  
     }
 }

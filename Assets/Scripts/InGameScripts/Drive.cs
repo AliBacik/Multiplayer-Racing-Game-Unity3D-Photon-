@@ -32,7 +32,8 @@ public class Drive : MonoBehaviour
     public GameObject PlayerNamePrefab;
     public Renderer carMesh;
 
-    string[] aiNames = {"Lee" , "Ali", "Nick" , "Merlin","Seth" };
+    public string networkName = "";
+    string[] aiNames = {"Ozan" , "Ali", "Eren" ,"Erkan","Kayra","Pudge", "Ogre" };
     private void Start()
     {
         for (int i = 0; i < 4; i++)
@@ -49,7 +50,14 @@ public class Drive : MonoBehaviour
 
         if (GetComponent<AIController>().enabled)
         {
-            playerName.GetComponent<NameUIController>().playerName.text = aiNames[Random.Range(0,aiNames.Length)];
+            if (networkName != "")
+            {
+                playerName.GetComponent<NameUIController>().playerName.text=networkName;
+            }
+            else
+            {
+                playerName.GetComponent<NameUIController>().playerName.text = aiNames[Random.Range(0, aiNames.Length)];
+            }      
         }
         else
         {
